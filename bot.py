@@ -2,10 +2,11 @@
 # Install: pip install python-telegram-bot
 # Host free on: railway.app or render.com
 
+import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = "8843802773:AAELro3JPb7MbWXxSHMxgtdhoyvrvt16bso"
+TOKEN = os.environ.get("TOKEN")
 FREE_CHANNEL = "https://t.me/WalleTrading1"
 PAID_LINK_MONTHLY = "DM ME"
 PAID_LINK_LIFETIME = "DM ME for questions, benefits and tailored setups"

@@ -7,6 +7,15 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 TOKEN = os.environ.get("TOKEN")
+
+# Debug: Check if TOKEN is set
+if not TOKEN:
+    print("ERROR: TOKEN environment variable is not set!")
+    print("Available environment variables:", list(os.environ.keys()))
+    exit(1)
+
+print(f"TOKEN found: {TOKEN[:10]}...{TOKEN[-5:]}")
+
 FREE_CHANNEL = "https://t.me/WalleTrading1"
 PAID_LINK_MONTHLY = "DM ME"
 PAID_LINK_LIFETIME = "DM ME for questions, benefits and tailored setups"
@@ -109,13 +118,17 @@ async def help_cmd(update, ctx):
         "/help - This menu"
     )
 
-app = ApplicationBuilder().token(TOKEN).build()
-for cmd, fn in [
-    ("start", start), ("crypto", crypto), ("stocks", stocks),
-    ("subscribe", subscribe), ("performance", performance),
-    ("markets", markets), ("disclaimer", disclaimer), ("help", help_cmd)
-]:
-    app.add_handler(CommandHandler(cmd, fn))
+try:
+    app = ApplicationBuilder().token(TOKEN).build()
+    for cmd, fn in [
+        ("start", start), ("crypto", crypto), ("stocks", stocks),
+        ("subscribe", subscribe), ("performance", performance),
+        ("markets", markets), ("disclaimer", disclaimer), ("help", help_cmd)
+    ]:
+        app.add_handler(CommandHandler(cmd, fn))
 
-print("Alpha Markets Bot running...")
-app.run_polling()
+    print("Alpha Markets Bot running...")
+    app.run_polling()
+except Exception as e:
+    print(f"ERROR: {e}")
+    exit(1)

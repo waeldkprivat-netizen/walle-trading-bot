@@ -1,4 +1,4 @@
-# bot.py — Alpha Markets Signals Bot
+# bot.py — Walle Trading Bot
 # Install: pip install python-telegram-bot
 # Host free on: railway.app or render.com
 
@@ -22,7 +22,7 @@ PAID_LINK_LIFETIME = "DM ME for questions, benefits and tailored setups"
 
 async def start(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "👋 Welcome to Alpha Markets Signals!\n\n"
+        "👋 Welcome to Walle Trading Signals!\n\n"
         "We cover TWO markets daily:\n"
         "₿ Crypto — BTC, ETH & high-potential alts\n"
         "📊 Stocks & CFDs — indices, tech, commodities\n\n"
@@ -127,7 +127,7 @@ try:
     ]:
         app.add_handler(CommandHandler(cmd, fn))
 
-    print("Alpha Markets Bot running...")
+    print("Walle Trading Bot running...")
     app.run_polling()
 except Exception as e:
     print(f"ERROR: {e}")
